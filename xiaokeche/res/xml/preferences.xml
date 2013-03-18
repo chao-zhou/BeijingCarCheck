@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+	<EditTextPreference 
+	    android:key="@string/pref_applycode_key"
+	    android:title="@string/pref_applycode_title"
+	    android:summary="@string/pref_applycode_summary"
+	    android:inputType="number"
+	    android:defaultValue=""
+	/>  
+</PreferenceScreen>

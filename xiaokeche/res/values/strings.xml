@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">北京小汽车中签查询</string>
+    <string name="hello_world">欢迎使用小汽车车中签查询APP</string>
+    <string name="menu_settings">设置</string>
+    <string name="title_activity_main">北京小汽车中签查询</string>
+    <string name="search_current">查询当期</string>
+    <string name="search_all">查询所有</string>
+    <string name="title_activity_preference">设置</string>
+	<string name="pref_applycode_title">申请编码</string>
+	<string name="pref_applycode_summary">该号码在你审核通过结果的左上角</string>
+	<string name="pref_applycode_key">applycode</string>
+	<string name="check_latest_text">检索最近一期</string>
+	<string name="check_all_text">检索迄今为止</string>
+	<string name="searching">请稍后，检索中&#8230;</string>
+</resources>
