@@ -5,20 +5,19 @@ import java.util.GregorianCalendar;
 import java.util.Iterator;
 
 import android.content.Context;
-import android.graphics.drawable.BitmapDrawable;
+import android.graphics.Bitmap;
 
-import com.chaozhou.xiaokeche.net.RequetSender;
+import com.chaozhou.xiaokechelib.RequestHelper;
+import com.chaozhou.xiaokechelib.analysis.WinResultAnalysis;
 import com.chaozhou.xiaokeche.utils.PeriodUtil;
 import com.chaozhou.xiaokeche.utils.SettingsUtil;
-import com.chaozhou.xiaokeche.utils.TextUtil;
 
 public class MainActivityRepository extends BaseRepository {
 
-	private RequetSender sender = null;
+	private RequestHelper helper = new RequestHelper();
 
 	public MainActivityRepository(Context context) {
 		super(context);
-		sender = new RequetSender(context);
 	}
 
 	public boolean checkLatestMonth(String validCode) throws Exception {
@@ -37,28 +36,22 @@ public class MainActivityRepository extends BaseRepository {
 		return false;
 	}
 
-	public BitmapDrawable getValidCodeDrawable() throws IllegalStateException,
+	public Bitmap getValidCodeBitmap() throws IllegalStateException,
 			IOException {
-		return sender.getValidCode();
+		return helper.getValidCodeBitmap();
 	}
 
 	private boolean checkMonth(GregorianCalendar calendar, String validCode)
 			throws Exception {
-		String html = sender.search(calendar, validCode);
+		String applyCode = getApplyCode();
+		String html = helper.getWinResult(calendar,applyCode,validCode);
 
-		String code = SettingsUtil.getApplyCode(mContext);
-
-		if (code.length() == 0) {
-			throw new Exception("Î´ÌîÐ´ÉêÇë´úÂë£¡");
-		}
-
-		Integer[] indexArray = TextUtil.findAllIndex(html, code);
-		return indexArray.length > 1;
+		WinResultAnalysis analysis = new WinResultAnalysis(applyCode);
+		return analysis.analysis(html);
 
 	}
 
-	@SuppressWarnings("unused")
-	private void saveWinInfo() {
-
+	private String getApplyCode(){
+		return SettingsUtil.getApplyCode(mContext);
 	}
 }

@@ -1,4 +1,4 @@
-package com.chaozhou.xiaokeche.utils;
+package com.chaozhou.xiaokechelib;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -9,7 +9,6 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 public class PeriodUtil {
-
 	private static int CheckDay = 25;
 
 	public static GregorianCalendar getLatestPeriod() {

@@ -5,7 +5,7 @@ import java.lang.ref.WeakReference;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.drawable.BitmapDrawable;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -48,7 +48,6 @@ public class MainActivity extends Activity {
 	protected void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
-
 		new ValidCodeImageTask(validCodeView).execute();
 	}
 
@@ -97,7 +96,7 @@ public class MainActivity extends Activity {
 		Toast.makeText(this, text, Toast.LENGTH_LONG).show();
 	}
 
-	class ValidCodeImageTask extends AsyncTask<Void, Void, BitmapDrawable> {
+	class ValidCodeImageTask extends AsyncTask<Void, Void, Bitmap> {
 
 		private final WeakReference<ImageView> imageViewReference;
 		private Exception ex = null;
@@ -109,10 +108,10 @@ public class MainActivity extends Activity {
 		}
 
 		@Override
-		protected BitmapDrawable doInBackground(Void... params) {
+		protected Bitmap doInBackground(Void... params) {
 			// TODO Auto-generated method stub
 			try {
-				return mRepo.getValidCodeDrawable();
+				return mRepo.getValidCodeBitmap();
 			} catch (Exception ex) {
 				this.ex = ex;
 				return null;
@@ -121,11 +120,11 @@ public class MainActivity extends Activity {
 
 		// Once complete, see if ImageView is still around and set bitmap.
 		@Override
-		protected void onPostExecute(BitmapDrawable drawable) {
-			if (imageViewReference != null && drawable != null) {
+		protected void onPostExecute(Bitmap bitmap) {
+			if (imageViewReference != null && bitmap != null) {
 				final ImageView imageView = imageViewReference.get();
 				if (imageView != null) {
-					imageView.setImageDrawable(drawable);
+					imageView.setImageBitmap(bitmap);
 				}
 			}
 
