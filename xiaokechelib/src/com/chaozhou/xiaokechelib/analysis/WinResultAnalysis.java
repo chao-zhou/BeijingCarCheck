@@ -12,7 +12,7 @@ public class WinResultAnalysis extends TextAnalysis{
 	
 	public boolean analysis(String html){
 		if(applyCode.length()<1){
-			throw new InvalidParameterException("IssueNo should not be empty");
+			throw new InvalidParameterException("applyCode should not be empty");
 		}
 		
 		return html.contains(applyCode);

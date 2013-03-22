@@ -4,8 +4,11 @@ import java.io.IOException;
 import java.util.GregorianCalendar;
 
 import android.graphics.Bitmap;
+import android.util.Log;
 
 import com.chaozhou.lib.net.http.HttpClientHelper;
+import com.chaozhou.xiaokechelib.page.ProfilePage;
+import com.chaozhou.xiaokechelib.page.ProfilePageParam;
 import com.chaozhou.xiaokechelib.page.ValidCodePage;
 import com.chaozhou.xiaokechelib.page.WinResultPage;
 import com.chaozhou.xiaokechelib.page.WinResultPageParam;
@@ -30,8 +33,15 @@ public class RequestHelper {
 		return page.getPage();
 	}
 	
-	public void login(){
+	public String login(String validcode) throws IllegalStateException, IOException{
+		ProfilePageParam param = new ProfilePageParam();
+		param.setPhone("18600406362");
+		param.setPassword("841111");
+		param.setValidCode(validcode);
 		
+		Log.v("html", client.getCookieString());
+		
+		return new ProfilePage(client,param).getPage();
 	}
 	
 	

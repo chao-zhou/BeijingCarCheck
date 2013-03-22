@@ -6,9 +6,13 @@ import java.util.Iterator;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.util.Log;
 
+import com.chaozhou.lib.net.http.HttpClientHelper;
 import com.chaozhou.xiaokechelib.RequestHelper;
 import com.chaozhou.xiaokechelib.analysis.WinResultAnalysis;
+import com.chaozhou.xiaokechelib.page.ProfilePage;
+import com.chaozhou.xiaokechelib.page.ProfilePageParam;
 import com.chaozhou.xiaokeche.utils.PeriodUtil;
 import com.chaozhou.xiaokeche.utils.SettingsUtil;
 
@@ -21,7 +25,12 @@ public class MainActivityRepository extends BaseRepository {
 	}
 
 	public boolean checkLatestMonth(String validCode) throws Exception {
-		return checkMonth(PeriodUtil.getLatestPeriod(), validCode);
+		
+		String html = helper.login(validCode);
+		Log.v("html", html);
+		
+		return true;
+		//return checkMonth(PeriodUtil.getLatestPeriod(), validCode);
 	}
 
 	public boolean checkAll(String validCode) throws Exception {
