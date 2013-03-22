@@ -8,6 +8,8 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.message.BasicNameValuePair;
 
+import android.util.Log;
+
 public class UrlEncoder {
 	
 	private String url = null;
@@ -51,10 +53,11 @@ public class UrlEncoder {
 		for (int i = 0; i < nameValueStrings.length; i++) {
 			params = nameValueStrings[i].split("=");
 			if (params.length > 1) {
+				Log.v("html", params[0]+"-"+params[1]);
 				nameValuePairs.add(new BasicNameValuePair(params[0], params[1]));
 				continue;
 			} 
-			
+			Log.v("html", params[0]+"-");
 			nameValuePairs.add(new BasicNameValuePair(params[0], ""));	
 		}
 	}
